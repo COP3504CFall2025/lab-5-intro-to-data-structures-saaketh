@@ -20,7 +20,9 @@
 
 int main() {
 
-
+    LinkedList<int> test;
+    test.addTail(12);
+    test.printReverse();
     return 0;
 }
 
