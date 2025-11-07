@@ -79,6 +79,7 @@ public:
 	// Removal
 	bool RemoveHead() {
     if (this->getCount() == 1) {
+      delete this->head;
       this->head = nullptr;
       this->tail = nullptr;
       this->count--;
@@ -94,6 +95,7 @@ public:
   }
 	bool RemoveTail() {
     if (this->getCount() == 1) {
+      delete this->tail;
       this->head = nullptr;
       this->tail = nullptr;
       this->count--;
