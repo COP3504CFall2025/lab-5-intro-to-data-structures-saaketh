@@ -62,7 +62,6 @@ public:
     this->head = temp;
     this->count++;
   }
-
 	void AddTail(const T& data) {
     Node<T>* temp = new Node<T>();
     temp->data = data;
@@ -79,39 +78,25 @@ public:
 
 	// Removal
 	bool RemoveHead() {
-    if (this->head != nullptr) {
-      Node<T>* prevHead = this->head;
-      this->head = this->head->next;
-      if (this->head != nullptr) {
-        this->head->prev = nullptr;
-        delete prevHead;
-      }
-      this->count--;
-      return true;
-    } else {
-      this->tail = nullptr;
-      return false;
-    }
+    if (this->head == nullptr) return false;
+    Node<T>* prevHead = this->head;
+    this->head = this->head->next;
+    if (this->head) this->head->prev = nullptr;
+    delete prevHead;
+    this->count--;
+    return true;
   }
 	bool RemoveTail() {
-    if (this->tail != nullptr) {
-      Node<T>* prevTail = this->tail;
-      this->tail = this->tail->prev;
-      if (this->tail != nullptr) {
-        this->tail->next = nullptr;
-        delete prevTail;
-      }
-      this->count--;
-      return true;
-    } else {
-      this->head = nullptr;
-      return false;
-    }
+    if (this->tail == nullptr) return false;
+    Node<T>* prevTail = this->tail;
+    this->tail = this->tail->prev;
+    if (this->tail) this->tail->next = nullptr;
+    delete prevTail;
+    this->count--;
+    return true;
   }
 	void Clear() {
-    for (size_t i = 0; i < this->getCount(); i++) {
-      this->RemoveTail();
-    }
+    while(this->RemoveTail()) {}
   }
 
 	// Operators

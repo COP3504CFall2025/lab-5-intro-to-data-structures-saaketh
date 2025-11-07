@@ -19,15 +19,19 @@
 */
 
 int main() {
-
     LinkedList<int> test;
-    test.AddHead(10);
+    test.AddTail(40);
     test.AddHead(20);
+    test.AddHead(30);
+    test.printForward();
+    // test.Clear();
+    // test.RemoveHead();
+    // test.RemoveHead();
     test.RemoveTail();
-    test.RemoveHead();
-    test.RemoveHead();
     test.RemoveTail();
-    // test.printForward();
+    test.RemoveTail();
+    std::cout << test.getTail() << std::endl;
+    test.printForward();
     // std::cout << test.getCount() << std::endl;
     return 0;
 }
