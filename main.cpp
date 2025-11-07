@@ -22,9 +22,13 @@ int main() {
 
     LinkedList<int> test;
     test.AddHead(10);
+    test.AddHead(20);
     test.RemoveTail();
     test.RemoveHead();
-    test.printForward();
+    test.RemoveHead();
+    test.RemoveTail();
+    // test.printForward();
+    // std::cout << test.getCount() << std::endl;
     return 0;
 }
 

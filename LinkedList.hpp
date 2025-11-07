@@ -84,9 +84,9 @@ public:
       this->head = this->head->next;
       if (this->head != nullptr) {
         this->head->prev = nullptr;
-        this->count--;
         delete prevHead;
       }
+      this->count--;
       return true;
     } else {
       this->tail = nullptr;
@@ -99,9 +99,9 @@ public:
       this->tail = this->tail->prev;
       if (this->tail != nullptr) {
         this->tail->next = nullptr;
-        this->count--;
         delete prevTail;
       }
+      this->count--;
       return true;
     } else {
       this->head = nullptr;
