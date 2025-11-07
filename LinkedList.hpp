@@ -22,7 +22,7 @@ public:
     }
     std::cout << std::endl;
   }
-	void printReverse() const {
+	void PrintReverse() const {
     Node<T>* curr = this->tail;
     while (curr != nullptr) {
       std::cout << curr->data << " ";
