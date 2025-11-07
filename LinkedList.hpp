@@ -78,6 +78,10 @@ public:
 
 	// Removal
 	bool RemoveHead() {
+    if (this->getCount() == 1) {
+      this->head = nullptr;
+      this->tail = nullptr;
+    }
     if (this->head == nullptr) return false;
     Node<T>* prevHead = this->head;
     this->head = this->head->next;
@@ -87,6 +91,10 @@ public:
     return true;
   }
 	bool RemoveTail() {
+    if (this->getCount() == 1) {
+      this->head = nullptr;
+      this->tail = nullptr;
+    }
     if (this->tail == nullptr) return false;
     Node<T>* prevTail = this->tail;
     this->tail = this->tail->prev;
