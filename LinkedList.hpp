@@ -115,7 +115,7 @@ public:
   }
 
 	// Operators
-	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept {
+	LinkedList<T>& operator=(const LinkedList<T>& other) {
     if (this == &other) return *this;
     this->Clear();
     this->head = nullptr;
@@ -128,7 +128,7 @@ public:
     }
     return *this;
   }
-	LinkedList<T>& operator=(const LinkedList<T>& other) {
+	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept {
     if (this == &other) return *this;
     this->Clear();
     this->head = other.head;
