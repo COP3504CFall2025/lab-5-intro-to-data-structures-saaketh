@@ -83,7 +83,7 @@ public:
   }
 	void Clear() {
     while (this->getCount() != 0) {
-      this->removeHead();
+      this->RemoveHead();
     }
   }
 
@@ -93,7 +93,7 @@ public:
     this->head = other.getHead();
     Node<T>* curr = this->head;
     while (curr != nullptr) {
-      addTail(curr->next);
+      this->AddTail(curr->next);
       curr = curr->next;
     }
     this->tail = this->getTail();
@@ -122,7 +122,7 @@ public:
     this->head = list.getHead();
     Node<T>* curr = this->head;
     while (curr != nullptr) {
-      addTail(curr->next);
+      this->AddTail(curr->next);
       curr = curr->next;
     }
     this->tail = this->getTail();
@@ -137,10 +137,8 @@ public:
   }
 	~LinkedList() {
     for (size_t i = 0; i < this->getCount(); i++) {
-      removeHead();
+      this->RemoveHead();
     }
-    // delete this->head;
-    // delete this->tail;
   }
 
 private:

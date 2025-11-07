@@ -21,8 +21,8 @@
 int main() {
 
     LinkedList<int> test;
-    test.addTail(12);
-    test.printReverse();
+    test.AddTail(12);
+    test.PrintReverse();
     return 0;
 }
 
