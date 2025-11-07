@@ -21,9 +21,18 @@
 int main() {
 
     LinkedList<int> test;
+    test.AddHead(10);
+    test.AddTail(12);
+    test.AddHead(10);
+    test.AddTail(12);
+    test.AddHead(10);
     test.AddTail(12);
     test.RemoveTail();
-    test.PrintReverse();
+    test.RemoveHead();
+    test.RemoveHead();
+    test.PrintForward();
+    LinkedList<int> test2(std::move(test));
+    test2.PrintReverse();
     return 0;
 }
 

@@ -51,64 +51,86 @@ public:
 	// Insertion
 	void AddHead(const T& data) {
     Node<T>* temp = new Node<T>();
-    this->head->prev = temp;
     temp->data = data;
     temp->next = this->head;
     temp->prev = nullptr;
+    if (this->head != nullptr) {
+      this->head->prev = temp;
+    } else {
+      this->tail = temp;
+    }
     this->head = temp;
     this->count++;
   }
+
 	void AddTail(const T& data) {
     Node<T>* temp = new Node<T>();
-    this->tail->next = temp;
     temp->data = data;
-    temp->next = nullptr;
     temp->prev = this->tail;
+    temp->next = nullptr;
+    if (this->tail != nullptr) {
+      this->tail->next = temp;
+    } else {
+      this->head = temp;
+    }
     this->tail = temp;
     this->count++;
   }
 
 	// Removal
 	bool RemoveHead() {
-    if (this->getCount() > 0) {
-      Node<T>* temp = this->head->next;
-      delete this->head;
-      this->head = temp;
-      this->count--;
+    if (this->head != nullptr) {
+      Node<T>* prevHead = this->head;
+      this->head = this->head->next;
+      if (this->head != nullptr) {
+        this->head->prev = nullptr;
+        this->count--;
+        delete prevHead;
+      }
       return true;
+    } else {
+      this->tail = nullptr;
+      return false;
     }
-    return false;
   }
 	bool RemoveTail() {
-    if (this->getCount() > 0) {
-      Node<T>* temp = this->tail->prev;
-      delete this->tail;
-      this->tail = temp;
-      this->count--;
+    if (this->tail != nullptr) {
+      Node<T>* prevTail = this->tail;
+      this->tail = this->tail->prev;
+      if (this->tail != nullptr) {
+        this->tail->next = nullptr;
+        this->count--;
+        delete prevTail;
+      }
       return true;
+    } else {
+      this->head = nullptr;
+      return false;
     }
-    return false;
   }
 	void Clear() {
-    while (this->getCount() != 0) {
-      this->RemoveHead();
+    for (size_t i = 0; i < this->getCount(); i++) {
+      this->RemoveTail();
     }
   }
 
 	// Operators
 	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept {
     if (this == &other) return *this;
-    this->head = other.getHead();
-    Node<T>* curr = this->head;
+    this->Clear();
+    this->head = nullptr;
+    this->tail = nullptr;
+    this->count = 0;
+    Node<T>* curr = other.head;
     while (curr != nullptr) {
-      this->AddTail(curr->next);
+      this->AddTail(curr->data);
       curr = curr->next;
     }
-    this->tail = this->getTail();
     return *this;
   }
 	LinkedList<T>& operator=(const LinkedList<T>& other) {
     if (this == &other) return *this;
+    this->Clear();
     this->head = other.head;
     this->tail = other.tail;
     this->count = other.count;
@@ -120,20 +142,19 @@ public:
 
 	// Construction/Destruction
 	LinkedList() {
-    this->head = new Node<T>();
-    this->tail = new Node<T>();
-    this->head->next = this->tail;
-    this->tail->prev = this->head;
-    this->count = 2;
+    this->head = nullptr;
+    this->tail = nullptr;
+    this->count = 0;
   }
-	LinkedList(const LinkedList<T>& list) {
-    this->head = list.getHead();
-    Node<T>* curr = this->head;
+	LinkedList(const LinkedList<T>& other) {
+    this->head = nullptr;
+    this->tail = nullptr;
+    this->count = 0;
+    Node<T>* curr = other.head;
     while (curr != nullptr) {
-      this->AddTail(curr->next);
+      this->AddTail(curr->data);
       curr = curr->next;
     }
-    this->tail = this->getTail();
   }
 	LinkedList(LinkedList<T>&& other) noexcept {
     this->head = other.head;
@@ -144,9 +165,7 @@ public:
     other.count = 0;
   }
 	~LinkedList() {
-    for (size_t i = 0; i < this->getCount(); i++) {
-      this->RemoveHead();
-    }
+    this->Clear();
   }
 
 private:
