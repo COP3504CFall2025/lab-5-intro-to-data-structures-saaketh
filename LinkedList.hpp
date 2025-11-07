@@ -14,7 +14,7 @@ template <typename T>
 class LinkedList {
 public:
 	// Behaviors
-	void printForward() const {
+	void PrintForward() const {
     Node<T>* curr = this->head;
     while (curr != nullptr) {
       std::cout << curr->data << " ";
@@ -22,7 +22,7 @@ public:
     }
     std::cout << std::endl;
   }
-	void printReverse() const {
+	void PrintReverse() const {
     Node<T>* curr = this->tail;
     while (curr != nullptr) {
       std::cout << curr->data << " ";
@@ -49,7 +49,7 @@ public:
   }
 
 	// Insertion
-	void addHead(const T& data) {
+	void AddHead(const T& data) {
     Node<T>* temp = new Node<T>();
     this->head->prev = temp;
     temp->data = data;
@@ -58,7 +58,7 @@ public:
     this->head = temp;
     this->count++;
   }
-	void addTail(const T& data) {
+	void AddTail(const T& data) {
     Node<T>* temp = new Node<T>();
     this->tail->next = temp;
     temp->data = data;
@@ -69,13 +69,13 @@ public:
   }
 
 	// Removal
-	void removeHead() {
+	void RemoveHead() {
     Node<T>* temp = this->head->next;
     delete this->head;
     this->head = temp;
     this->count--;
   }
-	void removeTail() {
+	void RemoveTail() {
     Node<T>* temp = this->tail->prev;
     delete this->tail;
     this->tail = temp;
