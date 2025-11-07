@@ -22,6 +22,7 @@ int main() {
 
     LinkedList<int> test;
     test.AddTail(12);
+    test.RemoveTail();
     test.PrintReverse();
     return 0;
 }

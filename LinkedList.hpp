@@ -69,17 +69,25 @@ public:
   }
 
 	// Removal
-	void RemoveHead() {
-    Node<T>* temp = this->head->next;
-    delete this->head;
-    this->head = temp;
-    this->count--;
+	bool RemoveHead() {
+    if (this->getCount() > 0) {
+      Node<T>* temp = this->head->next;
+      delete this->head;
+      this->head = temp;
+      this->count--;
+      return true;
+    }
+    return false;
   }
-	void RemoveTail() {
-    Node<T>* temp = this->tail->prev;
-    delete this->tail;
-    this->tail = temp;
-    this->count--;
+	bool RemoveTail() {
+    if (this->getCount() > 0) {
+      Node<T>* temp = this->tail->prev;
+      delete this->tail;
+      this->tail = temp;
+      this->count--;
+      return true;
+    }
+    return false;
   }
 	void Clear() {
     while (this->getCount() != 0) {
