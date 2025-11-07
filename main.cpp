@@ -28,8 +28,7 @@ int main() {
     // test.RemoveHead();
     // test.RemoveHead();
     test.Clear();
-    std::cout << test.getHead() << std::endl;
-    std::cout << test.getTail() << std::endl;
+    std::cout << test.getCount() << std::endl;
     // test.RemoveTail();
     // test.RemoveTail();
     // std::cout << test.getTail() << std::endl;

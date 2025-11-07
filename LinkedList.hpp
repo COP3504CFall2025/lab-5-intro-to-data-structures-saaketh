@@ -81,6 +81,8 @@ public:
     if (this->getCount() == 1) {
       this->head = nullptr;
       this->tail = nullptr;
+      this->count--;
+      return true;
     }
     if (this->head == nullptr) return false;
     Node<T>* prevHead = this->head;
@@ -94,6 +96,8 @@ public:
     if (this->getCount() == 1) {
       this->head = nullptr;
       this->tail = nullptr;
+      this->count--;
+      return true;
     }
     if (this->tail == nullptr) return false;
     Node<T>* prevTail = this->tail;
