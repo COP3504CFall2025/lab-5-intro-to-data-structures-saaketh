@@ -30,7 +30,7 @@ int main() {
     test.RemoveTail();
     test.RemoveHead();
     test.RemoveHead();
-    test.PrintForward();
+    test.printForward();
     LinkedList<int> test2(std::move(test));
     test2.PrintReverse();
     return 0;
