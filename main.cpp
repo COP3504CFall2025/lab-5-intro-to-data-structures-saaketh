@@ -41,7 +41,7 @@ int main() {
     stuff.push(10);
     stuff.push(10);
     stuff.push(10);
-    stuff.push(10);
+    stuff.pop();
     stuff.pop();
     stuff.pop();
     // stuff.peek();
