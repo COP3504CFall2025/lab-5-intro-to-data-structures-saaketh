@@ -106,18 +106,19 @@ public:
       }
     }
 
-    T pop() override { ;
-      if (this->curr_size_ > 0) {
-        if (this->curr_size_ <= 2) {
-          this->capacity_ = 1;
-        } else if (this->curr_size_ / 2 <= this->capacity_ / 4) {
-          this->capacity_ = this->capacity_ / 2;
-        }
-        this->curr_size_ -= 1;
-        return this->array_[this->curr_size_];
-      } else {
+    T pop() override {
+      if (this->curr_size_ == 0) {
         throw std::runtime_error("No elements to pop");
       }
+      T item = this->array_[this->curr_size_ - 1];
+      this->curr_size_ -= 1;
+      if (this->curr_size_ > 0 && this->curr_size_ <= this->capacity_ / 4) {
+        size_t new_capacity = this->capacity_ / 2;
+        if (new_capacity < 1) {
+          new_capacity = 1;
+        }
+      }
+      return item;
     }
 
     void printForward() const {
