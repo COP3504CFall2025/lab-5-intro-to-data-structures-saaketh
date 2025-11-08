@@ -13,7 +13,7 @@ class ABS : public StackInterface<T> {
 public:
     // Big 5 + Parameterized Constructor
     ABS() {
-      this->capacity_ = 0;
+      this->capacity_ = 1;
       this->curr_size_ = 0;
       this->array_ = new T[capacity_];
     }
@@ -39,6 +39,7 @@ public:
       for (int i = 0; i < this->curr_size_; i++) {
         this->push(other);
       }
+      return *this;
     }
     ABS(ABS&& other) noexcept {
       this->capacity_ = other.capacity_;
@@ -57,6 +58,7 @@ public:
       other.capacity_ = 0;
       other.curr_size_ = 0;
       other.array_ = nullptr;
+      return *this;
     }
     ~ABS() noexcept {
       delete[] this->array_;
@@ -93,12 +95,20 @@ public:
     }
 
     T peek() const override {
-      return this->array_[this->curr_size_ - 1];
+      if (this->curr_size_ > 0) {
+        return this->array_[this->curr_size_ - 1];
+      } else {
+        throw std::runtime_error("No elements to peek at");
+      }
     }
 
     T pop() override { ;
-      this->curr_size_ -= 1;
-      return this->array_[this->curr_size_];
+      if (this->curr_size_ > 0) {
+        this->curr_size_ -= 1;
+        return this->array_[this->curr_size_];
+      } else {
+        throw std::runtime_error("No elements to pop");
+      }
     }
 
     void printForward() {
