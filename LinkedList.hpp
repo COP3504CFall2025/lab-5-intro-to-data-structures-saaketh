@@ -116,7 +116,7 @@ public:
 	// Operators
 	LinkedList<T>& operator=(const LinkedList<T>& other) {
     if (this == &other) return *this;
-    this->Clear();
+    this->clear();
     this->head = nullptr;
     this->tail = nullptr;
     this->count = 0;
@@ -164,7 +164,7 @@ public:
     other.count = 0;
   }
 	~LinkedList() {
-    this->Clear();
+    this->clear();
   }
 
 private:
