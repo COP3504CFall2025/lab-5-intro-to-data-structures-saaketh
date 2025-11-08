@@ -42,6 +42,8 @@ int main() {
     // stuff.peek();
     stuff.pop();
     stuff.pop();
+    stuff.pop();
+    std::cout << stuff.getMaxCapacity() << std::endl;
     stuff.printForward();
     return 0;
 }

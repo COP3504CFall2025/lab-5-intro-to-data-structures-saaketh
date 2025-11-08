@@ -107,6 +107,9 @@ public:
 
     T pop() override { ;
       if (this->curr_size_ > 0) {
+        if (this->curr_size_ / 2 <= this->capacity_ / 4) {
+          this->capacity_ = this->capacity_ / 2;
+        }
         this->curr_size_ -= 1;
         return this->array_[this->curr_size_];
       } else {
