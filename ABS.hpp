@@ -109,7 +109,7 @@ public:
       if (this->curr_size_ > 0) {
         if (this->curr_size_ <= 2) {
           this->capacity_ = 1;
-        } else if (this->curr_size_ / 2 <= this->capacity_ / 4) {
+        } else if (this->curr_size_ / 2 < this->capacity_ / 4) {
           this->capacity_ = this->capacity_ / 2;
         }
         this->curr_size_ -= 1;
