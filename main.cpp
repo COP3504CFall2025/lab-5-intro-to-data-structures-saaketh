@@ -25,13 +25,18 @@ int main() {
     // test.Clear();
     // test.RemoveHead();
     // test.RemoveHead();
-    test.Clear();
+    test.clear();
     std::cout << test.getCount() << std::endl;
     // test.RemoveTail();
     // test.RemoveTail();
     // std::cout << test.getTail() << std::endl;
     // test.printForward();
     // std::cout << test.getCount() << std::endl;
+
+    ABS<int> stuff;
+    stuff.push(10);
+    stuff.pop();
+    stuff.printForward();
     return 0;
 }
 

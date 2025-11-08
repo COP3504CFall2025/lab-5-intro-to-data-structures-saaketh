@@ -129,7 +129,7 @@ public:
   }
 	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept {
     if (this == &other) return *this;
-    this->Clear();
+    this->clear();
     this->head = other.head;
     this->tail = other.tail;
     this->count = other.count;

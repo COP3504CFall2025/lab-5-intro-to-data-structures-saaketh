@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <iostream>
 #include <stdexcept>
 #include "Interfaces.hpp"
 
@@ -47,7 +48,7 @@ public:
       other.curr_size_ = 0;
       other.array_ = nullptr;
     }
-    ABS& operator=(ABS&& rhs) noexcept {
+    ABS& operator=(ABS&& other) noexcept {
       if (this == &other) return *this;
       delete[] this->array_;
       this->capacity_ = other.capacity_;
@@ -57,7 +58,7 @@ public:
       other.curr_size_ = 0;
       other.array_ = nullptr;
     }
-    ~ABS() noexcept override {
+    ~ABS() noexcept {
       delete[] this->array_;
       this->capacity_ = 0;
       this->array_ = nullptr;
@@ -95,10 +96,24 @@ public:
       return this->array_[this->curr_size_ - 1];
     }
 
-    T pop() override {
-      this->array_[this->curr_size_ - 1] = nullptr;
+    T pop() override { ;
       this->curr_size_ -= 1;
-    };
+      return this->array_[this->curr_size_];
+    }
+
+    void printForward() {
+      for (size_t i = 0; i < this->curr_size_; i++) {
+        std::cout << this->array_[i] << " ";
+      }
+      std::cout << std::endl;
+    }
+
+    void printReverse() {
+      for (size_t i = curr_size_; i >= 0; --i) {
+        std::cout << this->array_[i] << " ";
+      }
+      std::cout << std::endl;
+    }
 
 private:
     size_t capacity_;
