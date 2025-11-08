@@ -25,8 +25,8 @@ int main() {
     // test.Clear();
     // test.RemoveHead();
     // test.RemoveHead();
-    test.clear();
-    std::cout << test.getCount() << std::endl;
+    // test.clear();
+    // std::cout << test.getCount() << std::endl;
     // test.RemoveTail();
     // test.RemoveTail();
     // std::cout << test.getTail() << std::endl;
@@ -35,6 +35,12 @@ int main() {
 
     ABS<int> stuff;
     stuff.push(10);
+    stuff.push(10);
+    stuff.push(10);
+    std::cout << stuff.getMaxCapacity() << std::endl;
+    stuff.pop();
+    // stuff.peek();
+    stuff.pop();
     stuff.pop();
     stuff.printForward();
     return 0;

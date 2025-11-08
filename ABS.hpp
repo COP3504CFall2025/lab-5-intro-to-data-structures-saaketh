@@ -89,6 +89,9 @@ public:
         for (size_t i = 0; i < this->curr_size_; i++) {
           new_array[i] = this->array_[i];
         }
+        delete[] this->array_;
+        this->array_ = new_array;
+        this->capacity_ *= this->scale_factor_;
       }
       this->array_[this->curr_size_] = item;
       this->curr_size_ += 1;
