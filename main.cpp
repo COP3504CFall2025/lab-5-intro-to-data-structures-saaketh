@@ -20,9 +20,7 @@
 
 int main() {
     LinkedList<int> test;
-    test.AddTail(40);
-    test.AddTail(40);
-    test.AddTail(40);
+    test.addTail(40);
     // test.printForward();
     // test.Clear();
     // test.RemoveHead();

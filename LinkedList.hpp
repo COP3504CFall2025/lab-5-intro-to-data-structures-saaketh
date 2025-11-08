@@ -22,7 +22,7 @@ public:
     }
     std::cout << std::endl;
   }
-	void PrintReverse() const {
+	void printReverse() const {
     Node<T>* curr = this->tail;
     while (curr != nullptr) {
       std::cout << curr->data << " ";
@@ -49,7 +49,7 @@ public:
   }
 
 	// Insertion
-	void AddHead(const T& data) {
+	void addHead(const T& data) {
     Node<T>* temp = new Node<T>();
     temp->data = data;
     temp->next = this->head;
@@ -62,7 +62,7 @@ public:
     this->head = temp;
     this->count++;
   }
-	void AddTail(const T& data) {
+	void addTail(const T& data) {
     Node<T>* temp = new Node<T>();
     temp->data = data;
     temp->prev = this->tail;
@@ -77,7 +77,7 @@ public:
   }
 
 	// Removal
-	bool RemoveHead() {
+	bool removeHead() {
     if (this->getCount() == 1) {
       delete this->head;
       this->head = nullptr;
@@ -93,7 +93,7 @@ public:
     this->count--;
     return true;
   }
-	bool RemoveTail() {
+	bool removeTail() {
     if (this->getCount() == 1) {
       delete this->tail;
       this->head = nullptr;
@@ -110,7 +110,7 @@ public:
     return true;
   }
 	void Clear() {
-    while(this->RemoveTail()) {}
+    while(this->removeTail()) {}
   }
 
 	// Operators
@@ -122,7 +122,7 @@ public:
     this->count = 0;
     Node<T>* curr = other.head;
     while (curr != nullptr) {
-      this->AddTail(curr->data);
+      this->addTail(curr->data);
       curr = curr->next;
     }
     return *this;
@@ -151,7 +151,7 @@ public:
     this->count = 0;
     Node<T>* curr = other.head;
     while (curr != nullptr) {
-      this->AddTail(curr->data);
+      this->addTail(curr->data);
       curr = curr->next;
     }
   }
