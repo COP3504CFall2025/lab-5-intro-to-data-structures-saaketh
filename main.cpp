@@ -35,14 +35,14 @@ int main() {
 
     ABS<int> stuff;
     stuff.push(10);
-    stuff.push(10);
-    stuff.push(10);
     std::cout << stuff.getMaxCapacity() << std::endl;
     stuff.pop();
+    stuff.push(10);
+    stuff.push(10);
+    stuff.push(10);
+    stuff.push(10);
+    stuff.push(10);
     // stuff.peek();
-    stuff.pop();
-    stuff.pop();
-    stuff.pop();
     std::cout << stuff.getMaxCapacity() << std::endl;
     stuff.printForward();
     return 0;
