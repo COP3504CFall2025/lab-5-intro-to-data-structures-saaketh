@@ -41,9 +41,10 @@ int main() {
     stuff.push(10);
     stuff.push(10);
     stuff.push(10);
+    stuff.push(10);
     stuff.pop();
     
-     std::cout << stuff.getSize() << std::endl;
+    std::cout << stuff.getSize() << std::endl;
     // stuff.peek();
     std::cout << stuff.getMaxCapacity() << std::endl;
     stuff.printForward();

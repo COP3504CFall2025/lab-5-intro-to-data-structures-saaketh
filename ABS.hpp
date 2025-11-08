@@ -74,6 +74,7 @@ public:
 
     // Get the max size of the ABS
     [[nodiscard]] size_t getMaxCapacity() const noexcept {
+      this->printForward();
       return this->capacity_;
     }
 
@@ -119,14 +120,14 @@ public:
       }
     }
 
-    void printForward() {
+    void printForward() const {
       for (size_t i = 0; i < this->curr_size_; i++) {
         std::cout << this->array_[i] << " ";
       }
       std::cout << std::endl;
     }
 
-    void printReverse() {
+    void printReverse() const {
       for (size_t i = curr_size_; i >= 0; --i) {
         std::cout << this->array_[i] << " ";
       }
