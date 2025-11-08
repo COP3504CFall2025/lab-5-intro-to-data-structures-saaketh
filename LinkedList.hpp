@@ -109,7 +109,7 @@ public:
     this->count--;
     return true;
   }
-	void Clear() {
+	void clear() {
     while(this->removeTail()) {}
   }
 

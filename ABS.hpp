@@ -11,9 +11,24 @@ template<typename T>
 class ABS : public StackInterface<T> {
 public:
     // Big 5 + Parameterized Constructor
-    ABS();
-    explicit ABS(const size_t capacity);
-    ABS(const ABS& other);
+    ABS() {
+      this->capacity_ = 0;
+      this->curr_size_ = 0;
+      this->array_ = new T[capacity_];
+    }
+    explicit ABS(const size_t capacity) {
+      this->capacity_ = capacity;
+      this->curr_size_ = 0;
+      this->array_ = new T[capacity_];
+    }
+    ABS(const ABS& other) {
+      this->capacity_ = other.capacity_;
+      this->curr_size_ = 0;
+      this->array_ = new T[capacity_];
+      for (int i = 0; i < this->curr_size_; i++) {
+
+      }
+    }
     ABS& operator=(const ABS& rhs);
     ABS(ABS&& other) noexcept;
     ABS& operator=(ABS&& rhs) noexcept;
@@ -29,7 +44,7 @@ public:
     [[nodiscard]] T* getData() const noexcept;
 
     // Push item onto the stack
-    void push(const T& data) override;
+    void push(const T& item) override;
 
     T peek() const override;
 
