@@ -106,16 +106,16 @@ public:
     void shrink_array(size_t size) {
       if (size > 0 && (size < (this->capacity_ / this->scale_factor_))) {
         this->capacity_ = this->capacity_ / this->scale_factor_;
-        resize_array(this->capacity_);
+        this->resize_array(this->capacity_);
       } else if (size == 0) {
         this->capacity_ = 1;
-        resize_array(this->capacity_);
+        this->resize_array(this->capacity_);
       }
     }
 
     // Push item onto the stack
     void push(const T& item) override {
-      expand_array(this->curr_size_);
+      this->expand_array(this->curr_size_);
       this->array_[this->curr_size_] = item;
       this->curr_size_ += 1;
     }
@@ -136,7 +136,7 @@ public:
       }
       T item = this->array_[this->curr_size_ - 1];
       this->curr_size_ -= 1;
-      shrink_array(this->curr_size_);
+      this->shrink_array(this->curr_size_);
       return item;
     }
 

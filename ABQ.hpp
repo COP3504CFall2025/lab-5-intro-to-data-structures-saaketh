@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <iostream>
 #include <stdexcept>
 #include "Interfaces.hpp"
 
@@ -63,7 +64,7 @@ public:
       this->curr_size_ = 0;
       this->array_ = nullptr;
     }
-    ~ABQ() noexcept override {
+    ~ABQ() noexcept {
       delete[] this->array_;
       this->capacity_ = 0;
       this->array_ = nullptr;
@@ -81,24 +82,38 @@ public:
       return this->array_;
     }
 
+    // Resizes array
+    void resize_array(size_t size) {
+      T* new_array = new T[size];
+      for (size_t i = 0; i < this->curr_size_; i++) {
+        new_array[i] = this->array_[i];
+      }
+      delete[] this->array_;
+      this->array_ = new_array;
+      this->capacity_ = size;
+    }
 
-    void expand_array() {
-      if (this->capacity_ <= this->curr_size_) {
-        T* new_array = new T[this->capacity_ * this->scale_factor_];
-        for (size_t i = 0; i < this->curr_size_; i++) {
-          new_array[i] = this->array_[i];
-        }
-        delete[] this->array_;
-        this->array_ = new_array;
-        this->capacity_ *= this->scale_factor_;
+    // Expands array logic
+    void expand_array(size_t size) {
+      if (size >= this->capacity_) {
+        this->resize_array(this->capacity_ * this->scale_factor_);
+      }
+    }
+
+    // Shrink array logic
+    void shrink_array(size_t size) {
+      if (size > 0 && (size < (this->capacity_ / this->scale_factor_))) {
+        this->capacity_ = this->capacity_ / this->scale_factor_;
+        resize_array(this->capacity_);
+      } else if (size == 0) {
+        this->capacity_ = 1;
+        resize_array(this->capacity_);
       }
     }
 
     // Insertion
     void enqueue(const T& data) override {
-      if (this->curr_size_ >= capacity_) {
-        this->resize_array(this->capacity_ * this->scale_factor_);
-      }
+      this->expand_array(this->curr_size_);
       for (size_t i = 0; i < this->curr_size_; i++) {
         this->array_[i+1] = this->array_[i];
       }
@@ -106,12 +121,37 @@ public:
       this->curr_size_ += 1;
     }
 
-    // Access
+    // Access - same logic as peek in stack
     T peek() const override {
-
+      if (this->curr_size_ > 0) {
+        return this->array_[this->curr_size_ - 1];
+      } else {
+        throw std::runtime_error("No elements to peek at");
+      }
     }
 
-    // Deletion
-    T dequeue() override;
+    // Deletion - same logic as pop in stack
+    T dequeue() override {
+      if (this->curr_size_ == 0) {
+        throw std::runtime_error("No elements to pop");
+      }
+      T item = this->array_[this->curr_size_ - 1];
+      this->curr_size_ -= 1;
+      this->shrink_array(this->curr_size_);
+      return item;
+    }
 
+    // For visualization
+    void printForward() const {
+      for (size_t i = 0; i < this->curr_size_; i++) {
+        std::cout << this->array_[i] << " ";
+      }
+      std::cout << std::endl;
+    }
+    void printReverse() const {
+      for (size_t i = curr_size_; i >= 0; --i) {
+        std::cout << this->array_[i] << " ";
+      }
+      std::cout << std::endl;
+    }
 };

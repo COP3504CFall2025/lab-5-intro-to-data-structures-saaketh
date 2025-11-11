@@ -1,7 +1,7 @@
 #ifdef MAIN
 
 #include "ABDQ.hpp"
-// #include "ABQ.hpp"
+#include "ABQ.hpp"
 #include "ABS.hpp"
 #include "Interfaces.hpp"
 #include "LinkedList.hpp"
@@ -33,17 +33,12 @@ int main() {
     // test.printForward();
     // std::cout << test.getCount() << std::endl;
 
-    ABS<int> stuff;
-    stuff.push(1);
-    stuff.push(1);
-    stuff.push(1);
-    std::cout << stuff.getMaxCapacity() << std::endl;
-    stuff.pop();
-    std::cout << stuff.getMaxCapacity() << std::endl;
-    stuff.pop();
-    std::cout << stuff.getMaxCapacity() << std::endl;
-    stuff.pop();
-    std::cout << stuff.getMaxCapacity() << std::endl;
+    ABQ<int> stuff;
+    stuff.enqueue(5);
+    stuff.enqueue(7);
+    stuff.dequeue();
+    stuff.printForward();
+
     // std::cout << stuff.getMaxCapacity() << std::endl;
     // stuff.pop();
     // std::cout << stuff.getMaxCapacity() << std::endl;
