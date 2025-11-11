@@ -27,22 +27,38 @@ public:
 
     // Core Removal Operations
     T popFront() override {
-      T item = this->list.getHead()->data;
-      this->list.removeHead();
-      return item;
+      if (this->list.getCount() > 0) {
+        T item = this->list.getHead()->data;
+        this->list.removeHead();
+        return item;
+      } else {
+        throw std::runtime_error("empty front cant remove");
+      }
     }
     T popBack() override {
-      T item = this->list.getTail()->data;
-      this->list.removeTail();
-      return item;
+      if (this->list.getCount() > 0) {
+        T item = this->list.getTail()->data;
+        this->list.removeTail();
+        return item;
+      } else {
+        throw std::runtime_error("empty back cant remove");
+      }
     }
 
     // Element Accessors
     const T& front() const override {
-      return this->list.getHead()->data;
+      if (this->list.getCount() > 0) {
+        return this->list.getHead()->data;
+      } else {
+        throw std::runtime_error("empty head");
+      }
     }
     const T& back() const override {
-      return this->list.getTail()->data;
+      if (this->list.getCount() > 0) {
+        return this->list.getTail()->data;
+      } else {
+        throw std::runtime_error("empty tail");
+      }
     }
 
     // Getter
