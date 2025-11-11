@@ -33,12 +33,18 @@ int main() {
     // test.printForward();
     // std::cout << test.getCount() << std::endl;
 
-    ABQ<int> stuff;
-    stuff.enqueue(1);
-    stuff.enqueue(2);
-    stuff.enqueue(3);
-    stuff.enqueue(4);
-    stuff.enqueue(5);
+    // ABQ<int> stuff;
+    // stuff.enqueue(1);
+    // stuff.enqueue(2);
+    // stuff.enqueue(3);
+    // stuff.enqueue(4);
+    // stuff.enqueue(5);
+    // stuff.printForward();
+
+    LLS<int> stuff;
+    stuff.push(5);
+    stuff.push(7);
+    stuff.push(9);
     stuff.printForward();
     // stuff.dequeue();
     // stuff.printForward();
