@@ -83,15 +83,26 @@ public:
 
     // Insertion
     void enqueue(const T& data) override {
-      if (this->capacity_ > 0)
+      if (this->capacity_ <= this->curr_size_) {
+        T* new_array = new T[this->capacity_ * this->scale_factor_];
+        for (size_t i = 0; i < this->curr_size_; i++) {
+          new_array[i] = this->array_[i];
+        }
+        delete[] this->array_;
+        this->array_ = new_array;
+        this->capacity_ *= this->scale_factor_;
+      }
       for (size_t i = 0; i < this->curr_size_; i++) {
         this->array_[i+1] = this->array_[i];
       }
       this->array_[0] = data;
+      this->curr_size_ += 1;
     }
 
     // Access
-    T peek() const override;
+    T peek() const override {
+      
+    }
 
     // Deletion
     T dequeue() override;
