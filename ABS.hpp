@@ -74,6 +74,8 @@ public:
 
     // Get the max size of the ABS
     [[nodiscard]] size_t getMaxCapacity() const noexcept {
+      this->printForward();
+      std::cout << this->capacity_ << std::endl;
       return this->capacity_;
     }
 
@@ -83,28 +85,20 @@ public:
     }
 
     // Expands array if needed
-    void expand_array() {
-      if (this->capacity_ <= this->curr_size_) {
-        T* new_array = new T[this->capacity_ * this->scale_factor_];
-        for (size_t i = 0; i < this->curr_size_; i++) {
-          new_array[i] = this->array_[i];
-        }
-        delete[] this->array_;
-        this->array_ = new_array;
-        this->capacity_ *= this->scale_factor_;
+    void expand_array(size_t size) {
+      T* new_array = new T[size];
+      for (size_t i = 0; i < this->curr_size_; i++) {
+        new_array[i] = this->array_[i];
       }
+      delete[] this->array_;
+      this->array_ = new_array;
+      this->capacity_ = size;
     }
 
     // Push item onto the stack
     void push(const T& item) override {
-      if (this->curr_size_ >= capacity_) { 
-        T* new_array = new T[this->capacity_ * this->scale_factor_];
-        for (size_t i = 0; i < this->curr_size_; i++) {
-          new_array[i] = this->array_[i];
-        }
-        delete[] this->array_;
-        this->array_ = new_array;
-        this->capacity_ *= this->scale_factor_;
+      if (this->curr_size_ >= capacity_) {
+        this->expand_array(this->capacity_ * this->scale_factor_);
       }
       this->array_[this->curr_size_] = item;
       this->curr_size_ += 1;
@@ -117,28 +111,28 @@ public:
         throw std::runtime_error("No elements to peek at");
       }
     }
-
+    
     T pop() override {
       if (this->curr_size_ == 0) {
         throw std::runtime_error("No elements to pop");
       }
       T item = this->array_[this->curr_size_ - 1];
       this->curr_size_ -= 1;
-      if (this->curr_size_ > 1 && (this->curr_size_ < (this->capacity_ / 2))) {
+      if (this->curr_size_ > 0 && (this->curr_size_ < (this->capacity_ / 2))) {
         this->capacity_ = this->capacity_ / 2;
-      } else if (this->curr_size_ <= 1) {
+      } else if (this->curr_size_ == 0) {
         this->capacity_ = 1;
       }
       return item;
     }
 
+    // For visualization
     void printForward() const {
       for (size_t i = 0; i < this->curr_size_; i++) {
         std::cout << this->array_[i] << " ";
       }
       std::cout << std::endl;
     }
-
     void printReverse() const {
       for (size_t i = curr_size_; i >= 0; --i) {
         std::cout << this->array_[i] << " ";

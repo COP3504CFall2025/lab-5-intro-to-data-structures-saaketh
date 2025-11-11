@@ -38,13 +38,12 @@ int main() {
     stuff.push(1);
     stuff.push(1);
     std::cout << stuff.getMaxCapacity() << std::endl;
-    stuff.printForward();
     stuff.pop();
     std::cout << stuff.getMaxCapacity() << std::endl;
-    stuff.printForward();
     stuff.pop();
     std::cout << stuff.getMaxCapacity() << std::endl;
-    stuff.printForward();
+    stuff.pop();
+    std::cout << stuff.getMaxCapacity() << std::endl;
     // std::cout << stuff.getMaxCapacity() << std::endl;
     // stuff.pop();
     // std::cout << stuff.getMaxCapacity() << std::endl;
