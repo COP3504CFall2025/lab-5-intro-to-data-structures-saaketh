@@ -112,7 +112,7 @@ public:
       }
       T item = this->array_[this->curr_size_ - 1];
       this->curr_size_ -= 1;
-      if (this->curr_size_ > 0 && this->curr_size_ <= this->capacity_ / 4) {
+      if (this->curr_size_ > 0 && this->curr_size_ <= this->capacity_ / 2) {
         size_t new_capacity = this->capacity_ / 2;
         if (new_capacity < 1) {
           new_capacity = 1;
