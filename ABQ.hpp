@@ -81,7 +81,7 @@ public:
       return this->array_;
     }
 
-    
+
     void expand_array() {
       if (this->capacity_ <= this->curr_size_) {
         T* new_array = new T[this->capacity_ * this->scale_factor_];
@@ -96,7 +96,9 @@ public:
 
     // Insertion
     void enqueue(const T& data) override {
-      expand_array();
+      if (this->curr_size_ >= capacity_) {
+        this->resize_array(this->capacity_ * this->scale_factor_);
+      }
       for (size_t i = 0; i < this->curr_size_; i++) {
         this->array_[i+1] = this->array_[i];
       }
