@@ -51,9 +51,9 @@ public:
       this->capacity_ = other.capacity_;
       this->curr_size_ = other.curr_size_;
       this->array_ = other.array_;
-      this->capacity_ = 0;
-      this->curr_size_ = 0;
-      this->array_ = nullptr;
+      other.capacity_ = 0;
+      other.curr_size_ = 0;
+      other.array_ = nullptr;
     }
     ABQ& operator=(ABQ&& other) noexcept {
       if (this == &other) return *this;
@@ -61,9 +61,9 @@ public:
       this->capacity_ = other.capacity_;
       this->curr_size_ = other.curr_size_;
       this->array_ = other.array_;
-      this->capacity_ = 0;
-      this->curr_size_ = 0;
-      this->array_ = nullptr;
+      other.capacity_ = 0;
+      other.curr_size_ = 0;
+      other.array_ = nullptr;
       return *this;
     }
     ~ABQ() noexcept {

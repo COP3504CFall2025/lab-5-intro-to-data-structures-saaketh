@@ -14,7 +14,9 @@ public:
     LLQ();
 
     // Insertion
-    void enqueue(const T& item) override;
+    void enqueue(const T& item) override {
+      this->
+    }
 
     // Deletion
     T dequeue() override;
