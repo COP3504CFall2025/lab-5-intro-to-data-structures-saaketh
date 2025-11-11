@@ -74,7 +74,6 @@ public:
 
     // Get the max size of the ABS
     [[nodiscard]] size_t getMaxCapacity() const noexcept {
-      this->printForward();
       return this->capacity_;
     }
 
@@ -112,11 +111,12 @@ public:
       }
       T item = this->array_[this->curr_size_ - 1];
       this->curr_size_ -= 1;
-      if (this->curr_size_ > 0 && this->curr_size_ <= this->capacity_ / 2) {
+      if (this->curr_size_ > 0 && (this->curr_size_ <= (this->capacity_ / 2))) {
         size_t new_capacity = this->capacity_ / 2;
         if (new_capacity < 1) {
           new_capacity = 1;
         }
+        this->capacity_ = new_capacity;
       }
       return item;
     }

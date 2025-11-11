@@ -19,8 +19,8 @@
 */
 
 int main() {
-    LinkedList<int> test;
-    test.addTail(40);
+    // LinkedList<int> test;
+    // test.addTail(40);
     // test.printForward();
     // test.Clear();
     // test.RemoveHead();
@@ -34,18 +34,15 @@ int main() {
     // std::cout << test.getCount() << std::endl;
 
     ABS<int> stuff;
-    stuff.push(10);
-    std::cout << stuff.getMaxCapacity() << std::endl;
-     stuff.push(10);
-    std::cout << stuff.getMaxCapacity() << std::endl;
-     stuff.push(10);
-     stuff.push(10);
-    std::cout << stuff.getMaxCapacity() << std::endl;
-    stuff.push(10);
+    stuff.push(1);
+    stuff.push(2);
+    stuff.push(3);
     std::cout << stuff.getMaxCapacity() << std::endl;
     stuff.pop();
     std::cout << stuff.getMaxCapacity() << std::endl;
-    stuff.pop();
+    // stuff.pop();
+    // std::cout << stuff.getMaxCapacity() << std::endl;
+    // stuff.pop();
     // std::cout << stuff.getMaxCapacity() << std::endl;
     //  stuff.push();
     // std::cout << stuff.getMaxCapacity() << std::endl;
@@ -60,10 +57,10 @@ int main() {
     //  stuff.push(10);
     // std::cout << stuff.getMaxCapacity() << std::endl;
     
-    std::cout << stuff.getSize() << std::endl;
+    // std::cout << stuff.getSize() << std::endl;
     // stuff.peek();
-    std::cout << stuff.getMaxCapacity() << std::endl;
-    stuff.printForward();
+    // std::cout << stuff.getMaxCapacity() << std::endl;
+    // stuff.printForward();
     return 0;
 }
 
