@@ -82,7 +82,13 @@ public:
     }
 
     // Insertion
-    void enqueue(const T& data) override;
+    void enqueue(const T& data) override {
+      if (this->capacity_ > 0)
+      for (size_t i = 0; i < this->curr_size_; i++) {
+        this->array_[i+1] = this->array_[i];
+      }
+      this->array_[0] = data;
+    }
 
     // Access
     T peek() const override;

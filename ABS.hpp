@@ -86,7 +86,6 @@ public:
 
     // Push item onto the stack
     void push(const T& item) override {
-      this->curr_size_ += 1;
       if (this->curr_size_ >= capacity_) { 
         T* new_array = new T[this->capacity_ * this->scale_factor_];
         for (size_t i = 0; i < this->curr_size_; i++) {
@@ -96,6 +95,7 @@ public:
         this->array_ = new_array;
         this->capacity_ *= this->scale_factor_;
       }
+      this->curr_size_ += 1;
       this->array_[this->curr_size_] = item;
     }
 
