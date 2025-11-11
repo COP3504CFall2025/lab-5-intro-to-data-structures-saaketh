@@ -34,7 +34,7 @@ public:
       if (this->list.getCount() > 0) {
         return this->list.getHead()->data;
       } else {
-        throw std::runtime_error("Head is empty. Cannot be peeked.")
+        throw std::runtime_error("Head is empty. Cannot be peeked.");
       }
     }
 
