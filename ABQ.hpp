@@ -81,8 +81,7 @@ public:
       return this->array_;
     }
 
-    // Insertion
-    void enqueue(const T& data) override {
+    void expand_array() {
       if (this->capacity_ <= this->curr_size_) {
         T* new_array = new T[this->capacity_ * this->scale_factor_];
         for (size_t i = 0; i < this->curr_size_; i++) {
@@ -92,6 +91,11 @@ public:
         this->array_ = new_array;
         this->capacity_ *= this->scale_factor_;
       }
+    }
+
+    // Insertion
+    void enqueue(const T& data) override {
+      expand_array();
       for (size_t i = 0; i < this->curr_size_; i++) {
         this->array_[i+1] = this->array_[i];
       }
@@ -101,7 +105,7 @@ public:
 
     // Access
     T peek() const override {
-      
+
     }
 
     // Deletion

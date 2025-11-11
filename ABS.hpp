@@ -74,14 +74,25 @@ public:
 
     // Get the max size of the ABS
     [[nodiscard]] size_t getMaxCapacity() const noexcept {
-      this->printForward();
-      std::cout << this->capacity_ << std::endl;
       return this->capacity_;
     }
 
     // Return underlying data for the stack
     [[nodiscard]] T* getData() const noexcept {
       return this->array_;
+    }
+
+    // Expands array if needed
+    void expand_array() {
+      if (this->capacity_ <= this->curr_size_) {
+        T* new_array = new T[this->capacity_ * this->scale_factor_];
+        for (size_t i = 0; i < this->curr_size_; i++) {
+          new_array[i] = this->array_[i];
+        }
+        delete[] this->array_;
+        this->array_ = new_array;
+        this->capacity_ *= this->scale_factor_;
+      }
     }
 
     // Push item onto the stack
@@ -113,12 +124,10 @@ public:
       }
       T item = this->array_[this->curr_size_ - 1];
       this->curr_size_ -= 1;
-      if (this->curr_size_ > 0 && (this->curr_size_ < (this->capacity_ / 2))) {
-        size_t new_capacity = this->capacity_ / 2;
-        if (new_capacity < 1) {
-          new_capacity = 1;
-        }
-        this->capacity_ = new_capacity;
+      if (this->curr_size_ > 1 && (this->curr_size_ < (this->capacity_ / 2))) {
+        this->capacity_ = this->capacity_ / 2;
+      } else if (this->curr_size_ <= 1) {
+        this->capacity_ = 1;
       }
       return item;
     }
