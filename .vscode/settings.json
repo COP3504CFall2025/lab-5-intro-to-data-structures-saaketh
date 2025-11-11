@@ -39,6 +39,8 @@
     "variant": "cpp",
     "vector": "cpp",
     "algorithm": "cpp",
-    "__split_buffer": "cpp"
+    "__split_buffer": "cpp",
+    "__hash_table": "cpp",
+    "unordered_map": "cpp"
   }
 }

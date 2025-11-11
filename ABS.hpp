@@ -85,7 +85,7 @@ public:
     }
 
     // Expands array if needed
-    void expand_array(size_t size) {
+    void resize_array(size_t size) {
       T* new_array = new T[size];
       for (size_t i = 0; i < this->curr_size_; i++) {
         new_array[i] = this->array_[i];
@@ -95,10 +95,21 @@ public:
       this->capacity_ = size;
     }
 
+    // Shrinks array if needed
+    void shrink_array(size_t size) {
+      if (size > 0 && (size < (this->capacity_ / this->scale_factor_))) {
+        this->capacity_ = this->capacity_ / this->scale_factor_;
+        resize_array(this->capacity_);
+      } else if (size == 0) {
+        this->capacity_ = 1;
+        resize_array(this->capacity_);
+      }
+    }
+
     // Push item onto the stack
     void push(const T& item) override {
       if (this->curr_size_ >= capacity_) {
-        this->expand_array(this->capacity_ * this->scale_factor_);
+        this->resize_array(this->capacity_ * this->scale_factor_);
       }
       this->array_[this->curr_size_] = item;
       this->curr_size_ += 1;
@@ -111,18 +122,15 @@ public:
         throw std::runtime_error("No elements to peek at");
       }
     }
-    
+
     T pop() override {
       if (this->curr_size_ == 0) {
         throw std::runtime_error("No elements to pop");
       }
       T item = this->array_[this->curr_size_ - 1];
+      // Resize on shrink
       this->curr_size_ -= 1;
-      if (this->curr_size_ > 0 && (this->curr_size_ < (this->capacity_ / 2))) {
-        this->capacity_ = this->capacity_ / 2;
-      } else if (this->curr_size_ == 0) {
-        this->capacity_ = 1;
-      }
+      shrink_array(this->curr_size_);
       return item;
     }
 

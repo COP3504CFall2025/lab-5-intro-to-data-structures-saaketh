@@ -81,6 +81,7 @@ public:
       return this->array_;
     }
 
+    
     void expand_array() {
       if (this->capacity_ <= this->curr_size_) {
         T* new_array = new T[this->capacity_ * this->scale_factor_];
