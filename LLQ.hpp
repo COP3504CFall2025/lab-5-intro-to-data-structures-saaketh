@@ -20,14 +20,22 @@ public:
 
     // Deletion
     T dequeue() override {
-      T last_item = this->list.getHead()->data;
-      this->list.removeTail();
-      return last_item;
+      if (this->list.getCount() > 0) {
+        T last_item = this->list.getHead()->data;
+        this->list.removeHead();
+        return last_item;
+      } else {
+        throw std::runtime_error("List is empty. Cannot dequeue.");
+      }
     }
 
     // Access
     T peek() const override {
-      return this->list.getHead()->data;
+      if (this->list.getCount() > 0) {
+        return this->list.getHead()->data;
+      } else {
+        throw std::runtime_error("Head is empty. Cannot be peeked.")
+      }
     }
 
     // Getter
