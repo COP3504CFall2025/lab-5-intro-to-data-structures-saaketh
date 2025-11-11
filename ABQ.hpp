@@ -17,10 +17,27 @@ class ABQ : public QueueInterface<T>{
 
 public:
     // Constructors + Big 5
-    ABQ();
-    explicit ABQ(const size_t capacity);
-    ABQ(const ABQ& other);
-    ABQ& operator=(const ABQ& rhs);
+    ABQ() {
+      this->capacity_ = 1;
+      this->curr_size_ = 0;
+      this->array_ = new T[this->capacity_];
+    }
+    explicit ABQ(const size_t capacity) {
+      this->capacity_ = capacity;
+      this->curr_size_ = 0;
+      this->array_ = new T[this->capacity_];
+    }
+    ABQ(const ABQ& other) {
+      this->capacity_ = other.capacity_;
+      this->curr_size_ = other.curr_size_;
+      this->array_ = new T[other.capacity_];
+      for (size_t i = 0; i < other.curr_size_; i++) {
+        this->array_[i] = other.array_[i];
+      }
+    }
+    ABQ& operator=(const ABQ& rhs) {
+      
+    };
     ABQ(ABQ&& other) noexcept;
     ABQ& operator=(ABQ&& rhs) noexcept;
     ~ABQ() noexcept override;

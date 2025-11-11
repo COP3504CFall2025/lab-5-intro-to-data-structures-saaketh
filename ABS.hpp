@@ -74,6 +74,8 @@ public:
 
     // Get the max size of the ABS
     [[nodiscard]] size_t getMaxCapacity() const noexcept {
+      this->printForward();
+      std::cout << this->capacity_ << std::endl;
       return this->capacity_;
     }
 
