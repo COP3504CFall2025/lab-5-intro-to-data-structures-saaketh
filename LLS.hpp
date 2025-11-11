@@ -20,14 +20,22 @@ public:
 
     // Deletion
     T pop() override {
-      T last_item = this->list.getHead()->data;
-      this->list.removeHead();
-      return last_item;
+      if (this->list.getCount() > 0) {
+        T last_item = this->list.getHead()->data;
+        this->list.removeHead();
+        return last_item;
+      } else {
+        throw std::runtime_error("No elements to pop");
+      }
     }
 
     // Access
     T peek() const override {
-      return this->list.getHead()->data;
+      if (this->list.getCount() > 0) {
+        return this->list.getHead()->data;
+      } else {
+        throw std::runtime_error("Stack is empty");
+      }
     }
 
     // Getters
