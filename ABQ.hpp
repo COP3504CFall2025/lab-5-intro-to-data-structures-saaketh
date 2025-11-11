@@ -45,6 +45,7 @@ public:
       for (size_t i = 0; i < other.curr_size_; i++) {
         this->array_[i] = other.array_[i];
       }
+      return *this;
     }
     ABQ(ABQ&& other) noexcept {
       this->capacity_ = other.capacity_;
@@ -63,6 +64,7 @@ public:
       this->capacity_ = 0;
       this->curr_size_ = 0;
       this->array_ = nullptr;
+      return *this;
     }
     ~ABQ() noexcept {
       delete[] this->array_;
@@ -114,11 +116,11 @@ public:
     // Insertion
     void enqueue(const T& data) override {
       this->expand_array(this->curr_size_);
-      for (size_t i = 0; i < this->curr_size_; i++) {
-        this->array_[i+1] = this->array_[i];
+      this->curr_size_ += 1;
+      for (size_t i = this->curr_size_ - 1; i >= 1; i--) {
+        this->array_[i] = this->array_[i - 1];
       }
       this->array_[0] = data;
-      this->curr_size_ += 1;
     }
 
     // Access - same logic as peek in stack
@@ -133,7 +135,7 @@ public:
     // Deletion - same logic as pop in stack
     T dequeue() override {
       if (this->curr_size_ == 0) {
-        throw std::runtime_error("No elements to pop");
+        throw std::runtime_error("No elements to dequeue");
       }
       T item = this->array_[this->curr_size_ - 1];
       this->curr_size_ -= 1;

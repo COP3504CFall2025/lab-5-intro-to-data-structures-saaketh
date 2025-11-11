@@ -34,10 +34,14 @@ int main() {
     // std::cout << test.getCount() << std::endl;
 
     ABQ<int> stuff;
+    stuff.enqueue(1);
+    stuff.enqueue(2);
+    stuff.enqueue(3);
+    stuff.enqueue(4);
     stuff.enqueue(5);
-    stuff.enqueue(7);
-    stuff.dequeue();
     stuff.printForward();
+    // stuff.dequeue();
+    // stuff.printForward();
 
     // std::cout << stuff.getMaxCapacity() << std::endl;
     // stuff.pop();
