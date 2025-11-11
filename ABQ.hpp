@@ -35,17 +35,51 @@ public:
         this->array_[i] = other.array_[i];
       }
     }
-    ABQ& operator=(const ABQ& rhs) {
-      
-    };
-    ABQ(ABQ&& other) noexcept;
-    ABQ& operator=(ABQ&& rhs) noexcept;
-    ~ABQ() noexcept override;
+    ABQ& operator=(const ABQ& other) {
+      if (this == &other) return *this;
+      delete[] this->array_;
+      this->capacity_ = other.capacity_;
+      this->curr_size_ = other.curr_size_;
+      this->array_ = new T[other.capacity_];
+      for (size_t i = 0; i < other.curr_size_; i++) {
+        this->array_[i] = other.array_[i];
+      }
+    }
+    ABQ(ABQ&& other) noexcept {
+      this->capacity_ = other.capacity_;
+      this->curr_size_ = other.curr_size_;
+      this->array_ = other.array_;
+      this->capacity_ = 0;
+      this->curr_size_ = 0;
+      this->array_ = nullptr;
+    }
+    ABQ& operator=(ABQ&& other) noexcept {
+      if (this == &other) return *this;
+      delete[] this->array_;
+      this->capacity_ = other.capacity_;
+      this->curr_size_ = other.curr_size_;
+      this->array_ = other.array_;
+      this->capacity_ = 0;
+      this->curr_size_ = 0;
+      this->array_ = nullptr;
+    }
+    ~ABQ() noexcept override {
+      delete[] this->array_;
+      this->capacity_ = 0;
+      this->array_ = nullptr;
+      this->curr_size_ = 0;
+    }
 
     // Getters
-    [[nodiscard]] size_t getSize() const noexcept override;
-    [[nodiscard]] size_t getMaxCapacity() const noexcept;
-    [[nodiscard]] T* getData() const noexcept;
+    [[nodiscard]] size_t getSize() const noexcept override {
+      return this->curr_size_;
+    }
+    [[nodiscard]] size_t getMaxCapacity() const noexcept {
+      return this->capacity_;
+    }
+    [[nodiscard]] T* getData() const noexcept {
+      return this->array_;
+    }
 
     // Insertion
     void enqueue(const T& data) override;

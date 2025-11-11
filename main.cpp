@@ -37,6 +37,8 @@ int main() {
     stuff.push(1);
     stuff.push(2);
     stuff.push(3);
+    stuff.push(2);
+    stuff.push(3);
     std::cout << stuff.getMaxCapacity() << std::endl;
     stuff.pop();
     std::cout << stuff.getMaxCapacity() << std::endl;
