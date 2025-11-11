@@ -1,7 +1,7 @@
 #ifdef MAIN
 
 #include "ABDQ.hpp"
-#include "ABQ.hpp"
+// #include "ABQ.hpp"
 #include "ABS.hpp"
 #include "Interfaces.hpp"
 #include "LinkedList.hpp"
@@ -35,10 +35,8 @@ int main() {
 
     ABS<int> stuff;
     stuff.push(1);
-    stuff.push(2);
-    stuff.push(3);
-    stuff.push(2);
-    stuff.push(3);
+    stuff.push(1);
+    stuff.push(1);
     std::cout << stuff.getMaxCapacity() << std::endl;
     stuff.pop();
     std::cout << stuff.getMaxCapacity() << std::endl;

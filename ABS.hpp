@@ -95,8 +95,8 @@ public:
         this->array_ = new_array;
         this->capacity_ *= this->scale_factor_;
       }
-      this->curr_size_ += 1;
       this->array_[this->curr_size_] = item;
+      this->curr_size_ += 1;
     }
 
     T peek() const override {
@@ -113,7 +113,7 @@ public:
       }
       T item = this->array_[this->curr_size_ - 1];
       this->curr_size_ -= 1;
-      if (this->curr_size_ >= 4 && (this->curr_size_ <= (this->capacity_ / 2))) {
+      if (this->curr_size_ >=4 && (this->curr_size_ <= (this->capacity_ / 2))) {
         size_t new_capacity = this->capacity_ / 2;
         if (new_capacity < 1) {
           new_capacity = 1;
