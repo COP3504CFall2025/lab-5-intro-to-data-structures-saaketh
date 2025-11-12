@@ -95,8 +95,19 @@ public:
     // Resizes array
     void resize_array(size_t size) {
       T* new_array = new T[size];
-      for (size_t i = 0; i < this->size_; i++) {
-        new_array[i] = this->data_[i];
+      size_t new_index = 0;
+      size_t index = this->front_;
+      bool back_reached = false;
+      while (back_reached == false) {
+        if (index >= this->capacity_) {
+          index = 0;
+        }
+        if (index == this->back_) {
+          back_reached = true;
+        }
+        new_array[new_index] = this->data_[index];
+        index += 1;
+        new_index += 1;
       }
       delete[] this->data_;
       this->data_ = new_array;
@@ -160,7 +171,7 @@ public:
         this->front_ = 0;
       }
       this->size_ -= 1;
-      this->shrink_array(this->size_);
+      // this->shrink_array(this->size_);
       return front_item;
     }
     T popBack() override {
@@ -173,7 +184,7 @@ public:
         this->back_ = this->capacity_ - 1;
       }
       this->size_ -= 1;
-      this->shrink_array(this->size_);
+      // this->shrink_array(this->size_);
       return back_item;
     }
 
@@ -187,6 +198,7 @@ public:
     }
     const T& back() const override {
       if (this->size_ > 0) {
+        std::cout << "back" << this->back_ << std::endl;
         return this->data_[this->back_];
       } else {
         throw std::runtime_error("Empty array");
@@ -209,7 +221,7 @@ public:
         if (index == this->back_) {
           back_reached = true;
         }
-        // std::cout << index << std::endl;
+        // std::cout << index << " ";
         std::cout << this->data_[index] << " ";
         index += 1;
       }
@@ -221,14 +233,21 @@ public:
       while (front_reached == false) {
         std::cout << this->data_[index] << " ";
         index -= 1;
-        if (index < 0) {
+        if (index <= 0) {
           index = this->capacity_ - 1;
         }
         if (index == this->front_) {
           front_reached = true;
         }
       }
+    }
+
+    void printOriginal() const {
+      for (size_t i = 0; i < this->capacity_; i++) {
+        std::cout << this->data_[i] << " ";
+      }
       std::cout << std::endl;
+      std::cout << front_ << " " << back_ << std::endl;
     }
 
 };
