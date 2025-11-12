@@ -128,9 +128,13 @@ public:
       if (size > 0 && (size < (this->capacity_ / this->SCALE_FACTOR))) {
         this->capacity_ = this->capacity_ / this->SCALE_FACTOR;
         resize_array(this->capacity_);
+        this->front_ = 0;
+        this->back_ = this->size_ - 1;
       } else if (size == 0) {
         this->capacity_ = 1;
         resize_array(this->capacity_);
+        this->front_ = 0;
+        this->back_ = this->size_ - 1;
       }
     }
 
@@ -179,10 +183,10 @@ public:
         throw std::runtime_error("No elements to pop");
       }
       T back_item = this->data_[this->back_];
-      this->back_ = this->back_ - 1;
-      if (this->back_ <= 0) {
-        this->back_ = this->capacity_ - 1;
+      if (this->back_ == 0) {
+        this->back_ = this->capacity_;
       }
+      this->back_ = this->back_ - 1;
       this->size_ -= 1;
       // this->shrink_array(this->size_);
       return back_item;
