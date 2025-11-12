@@ -169,7 +169,7 @@ public:
       }
       T back_item = this->data_[this->back_];
       this->back_ = this->back_ - 1;
-      if (this->back_ =< 0) {
+      if (this->back_ <= 0) {
         this->back_ = this->capacity_ - 1;
       }
       this->size_ -= 1;
