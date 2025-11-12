@@ -54,6 +54,7 @@ int main() {
     stuff.pushFront(8);
     stuff.pushFront(9);
     stuff.pushFront(10);
+    std::cout << stuff.popFront() << std::endl;
     stuff.printForward();
     // stuff.dequeue();
     // stuff.printForward();

@@ -66,6 +66,7 @@ public:
       for (size_t i = 0; i < this->capacity_; i++) {
         this->data_[i] = other.data_[i];
       }
+      return *this;
     }
     ABDQ& operator=(ABDQ&& other) noexcept {
       if (this == &other) return *this;
@@ -80,6 +81,7 @@ public:
       other.front_ = 0;
       other.back_ = 0;
       other.data_ = nullptr;
+      return *this;
     }
     ~ABDQ() {
       delete[] this->data_;
@@ -106,7 +108,7 @@ public:
       if (size >= this->capacity_) {
         this->resize_array(this->capacity_ * this->SCALE_FACTOR);
         this->front_ = 0;
-        this->back_ = this->size_;
+        this->back_ = this->size_ - 1;
       }
     }
 
