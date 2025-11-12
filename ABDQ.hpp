@@ -156,12 +156,11 @@ public:
       }
       T front_item = this->data_[this->front_];
       this->front_ = this->front_ + 1;
-      if (this->front_ > this->capacity_) {
+      if (this->front_ >= this->capacity_) {
         this->front_ = 0;
       }
       this->size_ -= 1;
       this->shrink_array(this->size_);
-      std::cout << front_item << std::endl;
       return front_item;
     }
     T popBack() override {
@@ -170,7 +169,7 @@ public:
       }
       T back_item = this->data_[this->back_];
       this->back_ = this->back_ - 1;
-      if (this->back_ < 0) {
+      if (this->back_ =< 0) {
         this->back_ = this->capacity_ - 1;
       }
       this->size_ -= 1;
