@@ -41,10 +41,19 @@ int main() {
     // stuff.enqueue(5);
     // stuff.printForward();
 
-    LLS<int> stuff;
-    stuff.push(5);
-    stuff.push(7);
-    stuff.push(9);
+    // LLS<int> stuff;
+    // stuff.push(5);
+    // stuff.push(7);
+    // stuff.push(9);
+    // stuff.printForward();
+
+    ABDQ<int> stuff;
+    stuff.pushFront(5);
+    // std::cout << stuff.getSize() << std::endl;
+    stuff.pushFront(7);
+    stuff.pushFront(8);
+    stuff.pushFront(9);
+    stuff.pushFront(10);
     stuff.printForward();
     // stuff.dequeue();
     // stuff.printForward();
