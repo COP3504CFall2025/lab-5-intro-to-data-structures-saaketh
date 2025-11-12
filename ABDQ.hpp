@@ -161,6 +161,7 @@ public:
       }
       this->size_ -= 1;
       this->shrink_array(this->size_);
+      std::cout << front_item << std::endl;
       return front_item;
     }
     T popBack() override {
