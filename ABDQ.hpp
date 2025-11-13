@@ -131,10 +131,10 @@ public:
         this->front_ = 0;
         this->back_ = this->size_ - 1;
       } else if (size == 0) {
-        this->capacity_ = 1;
+        this->capacity_ = 4;
         resize_array(this->capacity_);
         this->front_ = 0;
-        this->back_ = this->size_ - 1;
+        this->back_ = 0;
       }
     }
 
