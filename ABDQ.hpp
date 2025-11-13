@@ -188,7 +188,7 @@ public:
       }
       this->back_ = this->back_ - 1;
       this->size_ -= 1;
-      // this->shrink_array(this->size_);
+      this->shrink_array(this->size_);
       return back_item;
     }
 
