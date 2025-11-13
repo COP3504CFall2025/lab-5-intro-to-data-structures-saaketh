@@ -125,7 +125,7 @@ public:
 
     // Shrink array logic
     void shrink_array(size_t size) {
-      if (size > 0 && (size < (this->capacity_ / this->SCALE_FACTOR))) {
+      if (size > 4 && (size < (this->capacity_ / this->SCALE_FACTOR))) {
         this->capacity_ = this->capacity_ / this->SCALE_FACTOR;
         resize_array(this->capacity_);
         this->front_ = 0;
@@ -175,7 +175,7 @@ public:
         this->front_ = 0;
       }
       this->size_ -= 1;
-      // this->shrink_array(this->size_);
+      this->shrink_array(this->size_);
       return front_item;
     }
     T popBack() override {
